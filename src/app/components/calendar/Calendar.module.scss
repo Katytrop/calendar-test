@@ -1,0 +1,40 @@
+.calendar {
+  width: 220px;
+  overflow: hidden;
+  padding: 12px;
+}
+.header {
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__title {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  &__btns {
+    display: flex;
+  }
+}
+.weekdays, .days, .month-selector {
+  display: flex;
+  flex-wrap: wrap;
+}
+.weekday, .day, .month {
+  width: calc(100% / 7);
+  text-align: center;
+  padding: 10px;
+}
+.day.selected {
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+}
+.day.today {
+  font-weight: bold;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
