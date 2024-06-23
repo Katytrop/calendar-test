@@ -11,10 +11,10 @@ const months = [
 ];
 
 const MonthSelector: FC = () => {
-  const { setView, setCurrentDate } = useCalendar();
+  const { setView, setCurrentDate, currentDate } = useCalendar();
 
   const handleMonthClick = (index: number) => {
-    setCurrentDate(dayjs().month(index));
+    setCurrentDate(currentDate.month(index));
     setView('month');
   };
 

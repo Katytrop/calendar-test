@@ -4,12 +4,12 @@ import React from 'react';
 import { useCalendar } from '@/app/context/Calendar';
 
 const SelectedDate = () => {
-  const { selectedDate  } = useCalendar();
+  const { currentDate  } = useCalendar();
 
   return (
     <div style={{marginBottom: '20px'}}>
-      {selectedDate  ? (
-        <p>Selected date: {selectedDate .format('MMMM D, YYYY')}</p>
+      {currentDate  ? (
+        <p>Selected date: {currentDate .format('MMMM D, YYYY')}</p>
       ) : (
         <p>No date selected</p>
       )}
