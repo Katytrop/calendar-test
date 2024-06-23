@@ -10,6 +10,7 @@
   justify-content: space-between;
   align-items: center;
   &__title {
+    margin-left: 8px;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -21,7 +22,7 @@
 
 .yearSelector {
   &__title {
-    margin-left: 8px;
+    
   }
 }
 
@@ -60,6 +61,10 @@
   }
   &.today {
     font-weight: bold;
+  }
+  &.notCurrentMonth {
+    font-weight: 600;
+    color: #605E5C;
   }
   &:hover {
     background-color: #F3F2F1;

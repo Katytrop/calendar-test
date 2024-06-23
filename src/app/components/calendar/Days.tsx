@@ -5,22 +5,34 @@ import dayjs from 'dayjs';
 import { useCalendar } from '@/app/context/Calendar';
 import styles from "./Calendar.module.scss";
 
-
 const Days: FC = () => {
   const { currentDate, setCurrentDate } = useCalendar();
 
-  const startOfMonth = currentDate.startOf('month');
-  const endOfMonth = currentDate.endOf('month');
-  const startDate = startOfMonth.startOf('week');
-  const endDate = endOfMonth.endOf('week');
+  const generateDays = () => {
+    const startOfMonth = currentDate.startOf('month');
+    const endOfMonth = currentDate.endOf('month');
+    const days = [];
 
-  const days: dayjs.Dayjs[] = [];
-  let day = startDate;
+    // Добавление дней предыдущего месяца, чтобы заполнить первую неделю
+    const startDayOfWeek = startOfMonth.isoWeekday();
+    for (let i = startDayOfWeek - 1; i > 0; i--) {
+      days.push(startOfMonth.subtract(i, 'day'));
+    }
 
-  while (day.isBefore(endDate, 'day')) {
-    days.push(day);
-    day = day.add(1, 'day');
+    // Добавление всех дней текущего месяца
+    for (let i = 0; i < endOfMonth.date(); i++) {
+      days.push(startOfMonth.add(i, 'day'));
+    }
+
+    // Добавление дней следующего месяца, чтобы заполнить последнюю неделю
+    const endDayOfWeek = endOfMonth.isoWeekday();
+    for (let i = 1; i <= (7 - endDayOfWeek); i++) {
+      days.push(endOfMonth.add(i, 'day'));
+    }
+
+    return days;
   }
+  const days = generateDays();
 
   const handleDayClick = (day: dayjs.Dayjs) => {
     setCurrentDate(day);
@@ -29,19 +41,22 @@ const Days: FC = () => {
   return (
     <div className={styles.days}>
       {days.map((dayItem, index) => {
-        let dayClass = styles.day;
+        const dayClasses = [styles.day];
 
-        if (dayItem.isSame(currentDate, 'day')) {
-          dayClass += ` ${styles.selected}`;
+        if (dayItem.isSame(currentDate, 'day')) { //выбранный день
+          dayClasses.push(styles.selected);
         }
-        if (dayItem.isSame(dayjs(), 'day')) {
-          dayClass += ` ${styles.today}`;
+        if (dayItem.isSame(dayjs(), 'day')) { // сегодняшний день
+          dayClasses.push(styles.today);
+        }
+        if (!dayItem.isSame(currentDate, 'month')) { //дни не входящие в текущий месяц
+          dayClasses.push(styles.notCurrentMonth);
         }
 
         return (
           <div
             key={index}
-            className={dayClass}
+            className={dayClasses.join(' ')}
             onClick={() => handleDayClick(dayItem)}
           >
             {dayItem.date()}
