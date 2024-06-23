@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./Page.module.scss";
 import Calendar from "./components/calendar/Calendar";
 import { CalendarProvider } from "./context/Calendar";
