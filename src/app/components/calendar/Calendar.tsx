@@ -2,6 +2,7 @@
 
 import { FC } from 'react';
 import { useCalendar } from '@/app/context/Calendar';
+import Dayjs from 'dayjs';
 import Days from './Days';
 import Header from './Header';
 import Weekdays from './Weekdays';
@@ -11,7 +12,12 @@ import styles from "./Calendar.module.scss";
 
 
 const Calendar: FC = () => {
-  const { view } = useCalendar();
+  const { currentDate, setCurrentDate, view, setView } = useCalendar();
+
+  const handleTodayClick = () => {
+    setCurrentDate(Dayjs());
+    setView('month');
+  };
 
   return (
     <div className={styles.calendar}>
@@ -28,6 +34,9 @@ const Calendar: FC = () => {
           <MonthSelector/>
         </>
       )}
+      <div onClick={handleTodayClick} className={`${styles.btn} ${styles.todayButton}`}>
+        Go to today
+      </div>
     </div>
   );
 };
