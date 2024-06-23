@@ -11,6 +11,7 @@
   &__title {
     font-size: 14px;
     font-weight: 600;
+    cursor: pointer;
   }
   &__btns {
     display: flex;
@@ -24,6 +25,7 @@
   width: calc(100% / 7);
   text-align: center;
   padding: 10px;
+  cursor: pointer;
 }
 .day.selected {
   background-color: #007bff;
