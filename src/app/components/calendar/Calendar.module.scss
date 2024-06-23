@@ -3,7 +3,8 @@
   overflow: hidden;
   padding: 12px;
 }
-.header {
+
+.header, .yearSelector {
   height: 32px;
   display: flex;
   justify-content: space-between;
@@ -17,24 +18,57 @@
     display: flex;
   }
 }
-.weekdays, .days, .month-selector {
+
+.yearSelector {
+  &__title {
+    margin-left: 8px;
+  }
+}
+
+.weekdays, .days, .monthSelector {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
+
 .weekday, .day, .month {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: calc(100% / 7);
+  height: 28px;
   text-align: center;
-  padding: 10px;
   cursor: pointer;
 }
-.day.selected {
-  background-color: #007bff;
-  color: white;
-  border-radius: 50%;
+
+.month {
+  width: calc(100% / 4 - 9px);
+  height: 40px;
+  &:hover {
+    background-color: #F3F2F1;
+  }
+  &:active {
+    background-color: #EDEBE9;
+  }
 }
-.day.today {
-  font-weight: bold;
+
+.day {
+  &.selected {
+    border-radius: 50%;
+    background-color: #51A7EF;
+    color: white;
+  }
+  &.today {
+    font-weight: bold;
+  }
+  &:hover {
+    background-color: #F3F2F1;
+  }
+  &:active {
+    background-color: #EDEBE9;
+  }
 }
+
 .btn {
   display: flex;
   align-items: center;

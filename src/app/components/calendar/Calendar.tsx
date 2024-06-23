@@ -1,19 +1,33 @@
+"use client"
+
 import { FC } from 'react';
+import { useCalendar } from '@/app/context/Calendar';
+import Days from './Days';
 import Header from './Header';
 import Weekdays from './Weekdays';
-
+import YearSelector from './YearSelector';
+import MonthSelector from './MonthSelector';
 import styles from "./Calendar.module.scss";
-import Days from './Days';
+
 
 const Calendar: FC = () => {
+  const { view } = useCalendar();
 
   return (
     <div className={styles.calendar}>
-      <>
-        <Header/>
-        <Weekdays/>
-        <Days/>
-      </>
+      {view === 'month' && (
+        <>
+          <Header />
+          <Weekdays />
+          <Days />
+        </>
+      )}
+      {view === 'year' && (
+        <>
+          <YearSelector/>
+          <MonthSelector/>
+        </>
+      )}
     </div>
   );
 };
