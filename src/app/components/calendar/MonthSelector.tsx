@@ -1,7 +1,6 @@
 "use client"
 
 import { FC } from 'react';
-import dayjs from 'dayjs';
 import { useCalendar } from '@/app/context/Calendar';
 import styles from "./Calendar.module.scss";
 

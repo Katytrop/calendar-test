@@ -9,11 +9,11 @@ const YearSelector: FC = () => {
   const currentYear = currentDate.year();
 
   const handlePrev = () => {
-    setCurrentDate(currentDate.subtract(1, 'year'));
+    setCurrentDate(currentDate.add(1, 'year'));
   };
 
   const handleNext = () => {
-    setCurrentDate(currentDate.add(1, 'year'));
+    setCurrentDate(currentDate.subtract(1, 'year'));
   };
 
   return (

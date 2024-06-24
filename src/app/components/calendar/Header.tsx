@@ -5,17 +5,15 @@ import styles from "./Calendar.module.scss";
 import Image from 'next/image';
 import { useCalendar } from '@/app/context/Calendar';
 
-
-
 const Header: FC = () => {
   const { currentDate, setView, setCurrentDate } = useCalendar();
 
   const handlePrev = () => {
-    setCurrentDate(currentDate.subtract(1, 'month'));
+    setCurrentDate(currentDate.add(1, 'month'));
   };
 
   const handleNext = () => {
-    setCurrentDate(currentDate.add(1, 'month'));
+    setCurrentDate(currentDate.subtract(1, 'month'));
   };
 
   return (

@@ -6,7 +6,7 @@ import { useCalendar } from '@/app/context/Calendar';
 import styles from "./Calendar.module.scss";
 
 const Days: FC = () => {
-  const { currentDate, setCurrentDate } = useCalendar();
+  const { currentDate, setSelectedDate, selectedDate } = useCalendar();
 
   const generateDays = () => {
     const startOfMonth = currentDate.startOf('month');
@@ -35,7 +35,7 @@ const Days: FC = () => {
   const days = generateDays();
 
   const handleDayClick = (day: dayjs.Dayjs) => {
-    setCurrentDate(day);
+    setSelectedDate(day); // Выбор даты при клике
   };
 
   return (
@@ -43,7 +43,7 @@ const Days: FC = () => {
       {days.map((dayItem, index) => {
         const dayClasses = [styles.day];
 
-        if (dayItem.isSame(currentDate, 'day')) { //выбранный день
+        if (selectedDate && dayItem.isSame(selectedDate, 'day')) {
           dayClasses.push(styles.selected);
         }
         if (dayItem.isSame(dayjs(), 'day')) { // сегодняшний день

@@ -10,9 +10,8 @@ import YearSelector from './YearSelector';
 import MonthSelector from './MonthSelector';
 import styles from "./Calendar.module.scss";
 
-
 const Calendar: FC = () => {
-  const { currentDate, setCurrentDate, view, setView } = useCalendar();
+  const { setCurrentDate, view, setView } = useCalendar();
 
   const handleTodayClick = () => {
     setCurrentDate(Dayjs());
