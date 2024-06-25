@@ -6,7 +6,7 @@ import { useCalendar } from '@/app/context/Calendar';
 import styles from "./Calendar.module.scss";
 
 const Days: FC = () => {
-  const { currentDate, setSelectedDate, selectedDate } = useCalendar();
+  const { currentDate, setCurrentDate, setSelectedDate, selectedDate } = useCalendar();
 
   const generateDays = () => {
     const startOfMonth = currentDate.startOf('month');
@@ -35,6 +35,10 @@ const Days: FC = () => {
   const days = generateDays();
 
   const handleDayClick = (day: dayjs.Dayjs) => {
+    if (!day.isSame(currentDate, 'month')) {
+      // Если кликнули на день из другого месяца, переключаем текущий месяц
+      setCurrentDate(day.startOf('month'));
+    }
     setSelectedDate(day); // Выбор даты при клике
   };
 
